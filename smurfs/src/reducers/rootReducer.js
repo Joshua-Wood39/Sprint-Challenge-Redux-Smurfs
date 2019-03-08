@@ -1,7 +1,14 @@
 /*
   Be sure to import in all of the action types from `../actions`
 */
-import { GET_SMURF, GET_SUCCESS, GET_FAILURE} from '../actions';
+import { 
+  GET_SMURF, 
+  GET_SUCCESS, 
+  GET_FAILURE,
+  ADD_SMURF,
+  ADD_SUCCESS,
+  ADD_FAILURE
+} from '../actions';
 /*
  Your initial/default state for this project could *Although does not have to* look a lot like this
  {
@@ -51,6 +58,27 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             fetchingSmurfs: false,
             error: action.payload
+          }
+
+        case ADD_SMURF:
+          return {
+            ...state,
+            addingSmurf: true,
+            error: ''
+
+          }
+
+        case ADD_SUCCESS:
+          return {
+            ...state,
+            smurfs: action.payload,
+            addingSmurf: false,
+            error: ''
+          }
+
+        case ADD_FAILURE:
+          return {
+            ...state
           }
           
       default: return state;

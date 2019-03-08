@@ -3,7 +3,8 @@ import './App.css';
 import { connect } from 'react-redux';
 import SmurfList from './SmurfList';
 import { getSmurf } from '../actions';
-
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'; 
+import AddSmurf from './AddSmurf';
 
 /*
  to wire this component up you're going to need a few things.
@@ -21,14 +22,26 @@ class App extends Component {
 
 
   render() {
-    console.log(this.props.smurfs)
     return (
-      <div className="App">
-        <h1>SMURFS! 2.0 W/ Redux</h1>
+      <Router>
+        <div className="App">
+          <h1>SMURFS! 2.0 W/ Redux</h1>
+          <ul>
+            <li>
+              <Link to="/">Smurf List</Link>
+            </li>
+            <li>
+              <Link to="/addsmurf">Add A Smurf</Link>
+            </li>
+          </ul>
 
-        <SmurfList smurfs={this.props.smurfs} />
-
-      </div>
+          <Route exact path="/" render={() => {
+            return <SmurfList smurfs={this.props.smurfs} />
+            }} 
+          />
+          <Route path="/addsmurf" component={AddSmurf} />
+        </div>
+      </Router>
     );
   }
 }
