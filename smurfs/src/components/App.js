@@ -5,6 +5,7 @@ import SmurfList from './SmurfList';
 import { getSmurf } from '../actions';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'; 
 import AddSmurf from './AddSmurf';
+import UpdateSmurf from './UpdateSmurf';
 
 /*
  to wire this component up you're going to need a few things.
@@ -19,6 +20,14 @@ class App extends Component {
   componentDidMount() {
     this.props.getSmurf();
   }
+
+updateSmurf = e => {
+
+}
+
+deleteSmurf = e => {
+  
+}
 
 
   render() {
@@ -40,6 +49,15 @@ class App extends Component {
             }} 
           />
           <Route path="/addsmurf" component={AddSmurf} />
+          <Route path="/updatesmurf/:id" render={props => (
+            <UpdateSmurf
+              {...props}
+              smurfs={this.props.smurfs}
+              updateSmurf={this.updateSmurf}
+              deleteSmurf={this.deleteSmurf}
+            />
+          )}
+          />
         </div>
       </Router>
     );
